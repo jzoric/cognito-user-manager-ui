@@ -1,0 +1,59 @@
+service: cognito-user-manager-ui
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  region: eu-central-1
+  environment:
+    SERVICE_ENDPOINT:
+      Fn::ImportValue: ${self:custom.backendAPI}:ServiceEndpoint
+
+package:
+  exclude:
+    - node_modules/**
+
+custom:
+  backendAPI: cognito-user-manager-backend:${self:provider.stage}
+  appName: cognito-manager-v1
+  serviceEndpoint: SERVICE_ENDPOINT
+  client:
+    bucketName: ${self:custom.appName}-${self:provider.stage}-ui
+    distributionFolder: build
+
+
+plugins:
+  - serverless-finch
+  - build-react
+  - serverless-export-env
+
+resources:
+  Resources:
+    StaticSite:
+      Type: AWS::S3::Bucket
+      Properties:
+        AccessControl: PublicRead
+        BucketName: ${self:custom.appName}-${self:provider.stage}-ui
+        WebsiteConfiguration:
+          IndexDocument: index.html
+    StaticSiteS3BucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: StaticSite
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action:
+              - s3:GetObject
+              Resource:
+                Fn::Join: [
+                  "",[
+                    "arn:aws:s3:::",
+                    {
+                      "Ref": "StaticSite"
+                    },
+                    "/*"
+                  ]
+                ]

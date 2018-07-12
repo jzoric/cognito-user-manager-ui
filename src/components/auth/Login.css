@@ -1,0 +1,19 @@
+.login-container {
+    padding-top: 20px;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login-form {
+    width: 300px;
+}
+
+.login-form-button {
+    width: 100%;
+}
+
+footer {
+    color: #f1f1f1;
+}
