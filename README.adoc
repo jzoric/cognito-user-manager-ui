@@ -2,11 +2,12 @@
 Doc Writer <doc.writer@asciidoctor.org>
 v1.0, 2013-08-01
 :toc:
+:imagesdir: ./docs-img
 
 == Intro
 This app is using API configured by https://github.com/jzoric/cognito-user-manager-backend[cognito-user-manager-backend] project.
 
-Be sure to deploy API before this app.
+Be sure to deploy API before running this app.
 
 == Requirements
 * https://serverless.com/[serverless framework]
@@ -67,3 +68,5 @@ Be sure to deploy API before this app.
 * Run `sls client deploy --no-confirm`
 
 By default it will create a stack in `eu-central-1` region with `dev` stage.
+
+image::./docs-img/s1.png[signin]
