@@ -69,4 +69,11 @@ Be sure to deploy API before running this app.
 
 By default it will create a stack in `eu-central-1` region with `dev` stage.
 
-image::./docs-img/s1.png[signin]
+== Screenshots
+
+.Sign in
+image::./s1.png[signin]
+.User pools
+image::./s2.png[user pools]
+.Update attributes
+image::./s3.png[attributes]
