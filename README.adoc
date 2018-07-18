@@ -72,7 +72,7 @@ By default it will create a stack in `eu-central-1` region with `dev` stage.
 == Screenshots
 
 .Sign in
-image::./s1.png[signin, width=50%,align="center"]
+image::./s1.png[signin]
 '''
 .User pools
 image::./s2.png[user pools]
