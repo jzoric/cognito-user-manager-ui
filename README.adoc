@@ -1,0 +1,81 @@
+= Application to manage AWS Cognito users
+Doc Writer <doc.writer@asciidoctor.org>
+v1.0, 2013-08-01
+:toc:
+:imagesdir: ./docs-img
+
+== Intro
+This application is using API configured by https://github.com/jzoric/cognito-user-manager-backend[cognito-user-manager-backend] project.
+
+*Be sure to deploy API before running this application.*
+
+== Requirements
+* https://serverless.com/[serverless framework]
+* IAM user
+* yarn
+* node
+
+=== IAM User
+
+.Policy summary
+----
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:*",
+                "s3:*",
+                "logs:*",
+                "lambda:*",
+                "dynamodb:*",
+                "events:*",
+                "cloudformation:*",
+                "cognito-idp:*",
+                "cognito-sync:*",
+                "cognito-identity:*",
+                "tag:GetResources",
+                "iam:*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "execute-api:Invoke"
+            ],
+            "Resource": "arn:aws:execute-api:*:*:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "apigateway:*"
+            ],
+            "Resource": "arn:aws:apigateway:*::/*"
+        }
+    ]
+}
+----
+
+== Setup and run
+* Clone this repo
+* Run `yarn`
+* Change bucket name `appName: <your-unique-app-name>` in `serverless.yml`
+* Run `sls deploy`
+* Run `sls export-env`
+* Run `sls client deploy --no-confirm`
+
+By default it will create a stack in `eu-central-1` region with `dev` stage.
+
+== Screenshots
+
+.Sign in
+image::./s1.png[signin]
+'''
+.User pools
+image::./s2.png[user pools]
+'''
+.Update attributes
+image::./s3.png[attributes]
