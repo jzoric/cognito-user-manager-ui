@@ -5,9 +5,9 @@ v1.0, 2013-08-01
 :imagesdir: ./docs-img
 
 == Intro
-This app is using API configured by https://github.com/jzoric/cognito-user-manager-backend[cognito-user-manager-backend] project.
+This application is using API configured by https://github.com/jzoric/cognito-user-manager-backend[cognito-user-manager-backend] project.
 
-Be sure to deploy API before running this app.
+*Be sure to deploy API before running this application.*
 
 == Requirements
 * https://serverless.com/[serverless framework]
@@ -73,7 +73,9 @@ By default it will create a stack in `eu-central-1` region with `dev` stage.
 
 .Sign in
 image::./s1.png[signin]
+'''
 .User pools
 image::./s2.png[user pools]
+'''
 .Update attributes
 image::./s3.png[attributes]
